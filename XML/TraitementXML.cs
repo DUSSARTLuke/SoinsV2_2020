@@ -1,4 +1,4 @@
-using ClassesMetier;
+﻿using Soins2020.classesMetier;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -30,7 +30,7 @@ namespace Soins
                 lesDossiers = value;
             }
         }
-        
+
         /// <summary>
         /// Obtient ou définit la collection des prestations (TagName prestation)
         /// </summary>
@@ -38,7 +38,7 @@ namespace Soins
         {
             get
             {
-                 return lesPrestations;
+                return lesPrestations;
             }
 
             set
@@ -89,7 +89,7 @@ namespace Soins
             SoinsXml.Load(fichier);
             XmlElement racine = //
             Initialiser(racine);
-            
+
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Soins
             List<Dossier> lesDossiers = new List<Dossier>();
             foreach (...)
             {
-               
+
             }
             return lesDossiers;
         }
@@ -116,20 +116,21 @@ namespace Soins
         public static Dossier XmlToDossier(XmlElement unDossierXML)
         {
             string nom = unDossierXML.ChildNodes[0].InnerText;
-            
+
             DateTime dateNaissance = TraitementXML.XmlToDateTime((XmlElement)unDossierXML.ChildNodes[2]);
-            if (unDossierXML.GetElementsByTagName("dossierprestations").Count == 0){       
-            
-               // pas de prestations
+            if (unDossierXML.GetElementsByTagName("dossierprestations").Count == 0)
+            {
+
+                // pas de prestations
             }
             else
             {
-				// au moins une prestation
+                // au moins une prestation
                 XmlNodeList lesPrestations = (unDossierXML.GetElementsByTagName("dossierprestations")[0]).ChildNodes;
                 List<Prestation> lesPrestationsDuDossier = new List<Prestation>();
                 foreach (XmlElement unePrestation in lesPrestations)
                 {
-                   
+
                 }
                 return new Dossier(nom, prenom, dateNaissance, lesPrestationsDuDossier);
 
@@ -160,16 +161,16 @@ namespace Soins
         private static Intervenant XmlToIntervenant(XmlElement unIntervenantXML)
         {
             string nomIntervenant = unIntervenantXML.ChildNodes[0].InnerText;
-            
+
             if (unIntervenantXML.ChildNodes.Count == 2)
             {
-				// ce n'est pas un spécialiste
+                // ce n'est pas un spécialiste
                 return new Intervenant(nomIntervenant, prenomIntervenant);
             }
             else
             {
-				// c'est un spécialiste
-                
+                // c'est un spécialiste
+
                 return new IntervenantExterne(nomIntervenant, prenomIntervenant, specialiteIntervenant, adresseIntervenant, telIntervenant);
             }
         }
@@ -183,7 +184,7 @@ namespace Soins
             List<Intervenant> lesIntervenants = new List<Intervenant>();
             foreach (XmlElement unIntervenantXml in TraitementXML.LesIntervenants)
             {
-                
+
             }
             return lesIntervenants;
         }
@@ -197,9 +198,9 @@ namespace Soins
         {
             Intervenant unIntervenant = XmlToIntervenant(unIntervenantXml);
             int idIntervenant = Convert.ToInt16(unIntervenantXml.GetAttribute("idintervenant"));
-            foreach(XmlElement unePrestationXml in LesPrestations)
+            foreach (XmlElement unePrestationXml in LesPrestations)
             {
-                
+
             }
             return unIntervenant;
         }
@@ -215,8 +216,8 @@ namespace Soins
             int annee = Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("yyyy")[0].InnerText);
             ...
 			int minutePrestation = ((uneDateTimeXml.GetElementsByTagName("mi")).Count == 0) ? (0) : (Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("mi")[0].InnerText));
-			...
-            return new DateTime(annee, mois, jour,heurePrestation, minutePrestation,0);
+            ...
+            return new DateTime(annee, mois, jour, heurePrestation, minutePrestation, 0);
         }
         /// <summary>
         /// cherche et retourne un élément correspondant à une prestation dont l'ID passé en paramètre
@@ -226,18 +227,18 @@ namespace Soins
         private static XmlElement CherchePrestation(int idPrestation)
         {
             int i = 0;
-            while (Convert.ToInt16(((XmlElement)lesPrestations[i]).GetAttribute("idprestation"))!=idPrestation && i<LesIntervenants.Count )
+            while (Convert.ToInt16(((XmlElement)lesPrestations[i]).GetAttribute("idprestation")) != idPrestation && i < LesIntervenants.Count)
             {
-                i++;   
+                i++;
             }
             if (Convert.ToInt16(((XmlElement)lesPrestations[i]).GetAttribute("idprestation")) == idPrestation)
             {
-                
+
             }
             else
             {
                 throw new Exception("Prestation non trouvée, arrêt du traitement");
-            }                
+            }
         }
         /// <summary>
         /// cherche et retourne un élément correspondant à un intervenant dont l'ID passé en paramètre
@@ -249,7 +250,7 @@ namespace Soins
             int i = 0;
             while (...)
             {
-               
+
             }
             if (//)
             {

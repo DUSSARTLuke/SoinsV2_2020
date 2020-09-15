@@ -49,6 +49,7 @@
     <Compile Include="classesMetier\Prestation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XML\TraitementXML.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
