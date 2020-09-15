@@ -43,11 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classesMetier\Dossier.cs" />
+    <Compile Include="classesMetier\Intervenant.cs" />
+    <Compile Include="classesMetier\IntervenantExterne.cs" />
+    <Compile Include="classesMetier\Prestation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="XML\Soins2020.xml" />
+    <Content Include="XML\Soins2020_doc.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
