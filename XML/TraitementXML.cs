@@ -150,6 +150,7 @@ namespace Soins
         {
             string libellePrestation = unePrestationXML.ChildNodes[0].InnerText;
             DateTime datePrestation = TraitementXML.XmlToDateTime((XmlElement)unePrestationXML.ChildNodes[2]);
+            XmlElement unIntervenantXML = unePrestationXML.get
             Intervenant unIntervenant = TraitementXML.XmlToIntervenant(unIntervenantXML);
 
             return new Prestation(libellePrestation, datePrestation, unIntervenant);
@@ -190,7 +191,7 @@ namespace Soins
             List<Intervenant> lesIntervenants = new List<Intervenant>();
             foreach (XmlElement unIntervenantXml in TraitementXML.LesIntervenants)
             {
-
+                lesIntervenants.Add(TraitementXML.XmlToIntervenant(unIntervenantXml));
             }
             return lesIntervenants;
         }
@@ -220,9 +221,11 @@ namespace Soins
         {
             //XmlElement datenaissanceXml = (XmlElement)unDossier.ChildNodes[2];
             int annee = Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("yyyy")[0].InnerText);
-            ...
+            int mois = Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("mm")[0].InnerText);
+            int jour = Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("jj")[0].InnerText);
 			int minutePrestation = ((uneDateTimeXml.GetElementsByTagName("mi")).Count == 0) ? (0) : (Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("mi")[0].InnerText));
-            ...
+            int heurePrestation = ((uneDateTimeXml.GetElementsByTagName("hh")).Count == 0) ? (0) : (Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("hh")[0].InnerText));
+            
             return new DateTime(annee, mois, jour, heurePrestation, minutePrestation, 0);
         }
         /// <summary>
@@ -301,13 +304,13 @@ namespace Soins
         public static void AfficherDossier(Dossier unDossier)
         {
             Console.WriteLine("----- Début dossier --------------");
-            Console.WriteLine("Nom : " + unDossier.NomPatient + " Prenom : " + unDossier.PrenomPatient + " Date de naissance : " + unDossier.DateDeNaissancePatient.ToShortDateString());
-            Console.WriteLine("\tNombre de prestations : " + unDossier.MesPrestations.Count);
-            if (unDossier.MesPrestations.Count > 0)
+            Console.WriteLine("Nom : " + unDossier.getNomPatient + " Prenom : " + unDossier.getPrenomPatient + " Date de naissance : " + unDossier.getDateNaissancePatient.Date);
+            Console.WriteLine("\tNombre de prestations : " + unDossier.getNbPrestations());
+            if (unDossier.getNbPrestations() > 0)
             {
-                foreach (Prestation unePrestation in unDossier.MesPrestations)
+                foreach (Prestation unePrestation in unDossier.getMesPrestations)
                 {
-                    Console.WriteLine("\t" + unePrestation.Libelle + " - " + unePrestation.DateHeureSoin.ToString() + " - " + unePrestation.UnIntervenant);
+                    Console.WriteLine("\t" + unePrestation.getLibelle + " - " + unePrestation.getDateSoin.Date + " - " + unePrestation.getL_Intervenant);
                 }
                 Console.WriteLine("nombre de jours de soins : " + unDossier.getNbJoursSoins());
                 Console.WriteLine("nombre de prestations externes : " + unDossier.getNbPrestationsExternes());

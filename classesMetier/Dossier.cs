@@ -32,6 +32,11 @@ namespace Soins2020.classesMetier
         public DateTime getDateNaissancePatient { get => dateNaissancePatient; }
 
         /// <summary>
+        /// Accesseur sur la list de prestations
+        /// </summary>
+        internal List<Prestation> getMesPrestations { get => mesPrestations;}
+
+        /// <summary>
         /// Constructeur de Dossier sans prestation 
         /// </summary>
         /// <param name="nomPatient"> nom du patient</param>
