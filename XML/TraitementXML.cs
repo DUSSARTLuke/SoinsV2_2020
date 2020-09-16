@@ -133,7 +133,9 @@ namespace Soins
                 List<Prestation> lesPrestationsDuDossier = new List<Prestation>();
                 foreach (XmlElement unePrestation in lesPrestations)
                 {
-
+                    int idPrestation = Convert.ToInt16(unePrestation.GetAttribute("idprestation"));
+                    XmlElement unePrestationXML = TraitementXML.CherchePrestation(idPrestation);
+                    lesPrestationsDuDossier.Add(TraitementXML.XmlToPrestation(unePrestationXML));
                 }
                 return new Dossier(nom, prenom, dateNaissance, lesPrestationsDuDossier);
 
@@ -149,9 +151,9 @@ namespace Soins
         private static Prestation XmlToPrestation(XmlElement unePrestationXML)
         {
             string libellePrestation = unePrestationXML.ChildNodes[0].InnerText;
-            DateTime datePrestation = TraitementXML.XmlToDateTime((XmlElement)unePrestationXML.ChildNodes[2]);
+            DateTime datePrestation = TraitementXML.XmlToDateTime((XmlElement)unePrestationXML.ChildNodes[1]);
             int idIntervenant = Convert.ToInt16(unePrestationXML.GetAttribute("idintervenant"));
-            XmlElement unIntervenantXML = ;
+            XmlElement unIntervenantXML = TraitementXML.ChercheIntervenant(idIntervenant);
             Intervenant unIntervenant = TraitementXML.XmlToIntervenant(unIntervenantXML);
 
             return new Prestation(libellePrestation, datePrestation, unIntervenant);
@@ -223,7 +225,7 @@ namespace Soins
             //XmlElement datenaissanceXml = (XmlElement)unDossier.ChildNodes[2];
             int annee = Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("yyyy")[0].InnerText);
             int mois = Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("mm")[0].InnerText);
-            int jour = Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("jj")[0].InnerText);
+            int jour = Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("dd")[0].InnerText);
 			int minutePrestation = ((uneDateTimeXml.GetElementsByTagName("mi")).Count == 0) ? (0) : (Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("mi")[0].InnerText));
             int heurePrestation = ((uneDateTimeXml.GetElementsByTagName("hh")).Count == 0) ? (0) : (Convert.ToInt16(uneDateTimeXml.GetElementsByTagName("hh")[0].InnerText));
             
@@ -243,7 +245,7 @@ namespace Soins
             }
             if (Convert.ToInt16(((XmlElement)lesPrestations[i]).GetAttribute("idprestation")) == idPrestation)
             {
-               
+                return (XmlElement)lesPrestations[i];
             }
             else
             {
@@ -258,11 +260,11 @@ namespace Soins
         private static XmlElement ChercheIntervenant(int idIntervenant)
         {
             int i = 0;
-            while (...)
+            while (Convert.ToInt16(((XmlElement)lesIntervenants[i]).GetAttribute("idintervenant")) != idIntervenant && i < LesIntervenants.Count)
             {
-
+                i++;
             }
-            if (//)
+            if (Convert.ToInt16(((XmlElement)lesIntervenants[i]).GetAttribute("idintervenant")) == idIntervenant)
             {
                 return (XmlElement)LesIntervenants[i];
             }
@@ -294,7 +296,7 @@ namespace Soins
         {
             foreach (Intervenant unIntervenant in lesIntervenants)
             {
-                Console.WriteLine(unIntervenant.AfficheIntervenantComplet() + "\n");
+                //Console.WriteLine(unIntervenant.AfficheIntervenantComplet() + "\n");
             }
         }
         /// <summary>
