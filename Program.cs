@@ -1,6 +1,7 @@
 ﻿using Soins2020.classesMetier;
 using System;
 using System.Collections.Generic;
+using Soins;
 
 namespace Soins2020
 {
