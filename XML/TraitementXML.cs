@@ -296,7 +296,7 @@ namespace Soins
         {
             foreach (Intervenant unIntervenant in lesIntervenants)
             {
-                //Console.WriteLine(unIntervenant.AfficheIntervenantComplet() + "\n");
+                Console.WriteLine(unIntervenant.ToString() + "\n");
             }
         }
         /// <summary>
