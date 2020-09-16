@@ -150,7 +150,8 @@ namespace Soins
         {
             string libellePrestation = unePrestationXML.ChildNodes[0].InnerText;
             DateTime datePrestation = TraitementXML.XmlToDateTime((XmlElement)unePrestationXML.ChildNodes[2]);
-            XmlElement unIntervenantXML = unePrestationXML.get
+            int idIntervenant = Convert.ToInt16(unePrestationXML.GetAttribute("idintervenant"));
+            XmlElement unIntervenantXML = ;
             Intervenant unIntervenant = TraitementXML.XmlToIntervenant(unIntervenantXML);
 
             return new Prestation(libellePrestation, datePrestation, unIntervenant);
@@ -207,7 +208,7 @@ namespace Soins
             int idIntervenant = Convert.ToInt16(unIntervenantXml.GetAttribute("idintervenant"));
             foreach (XmlElement unePrestationXml in LesPrestations)
             {
-
+                unIntervenant.ajoutePrestation(TraitementXML.XmlToPrestation(unePrestationXml));
             }
             return unIntervenant;
         }
@@ -242,7 +243,7 @@ namespace Soins
             }
             if (Convert.ToInt16(((XmlElement)lesPrestations[i]).GetAttribute("idprestation")) == idPrestation)
             {
-
+               
             }
             else
             {
