@@ -239,7 +239,7 @@ namespace Soins
         private static XmlElement CherchePrestation(int idPrestation)
         {
             int i = 0;
-            while (Convert.ToInt16(((XmlElement)lesPrestations[i]).GetAttribute("idprestation")) != idPrestation && i < LesIntervenants.Count)
+            while (Convert.ToInt16(((XmlElement)lesPrestations[i]).GetAttribute("idprestation")) != idPrestation && i < LesPrestations.Count)
             {
                 i++;
             }
