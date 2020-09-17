@@ -58,12 +58,8 @@ namespace Soins2020.classesMetier
         /// <param name="prenomPatient"> prenom du patient</param>
         /// <param name="dateNaissancePatient"> date de naissance du patient</param>
         /// <param name="unePrestation"> une prestation à insérer dans le dossier</param>
-        public Dossier(string nomPatient, string prenomPatient, DateTime dateNaissancePatient, Prestation unePrestation)
+        public Dossier(string nomPatient, string prenomPatient, DateTime dateNaissancePatient, Prestation unePrestation):this(nomPatient,prenomPatient,dateNaissancePatient)
         {
-            this.nomPatient = nomPatient;
-            this.prenomPatient = prenomPatient;
-            this.dateNaissancePatient = dateNaissancePatient;
-            this.mesPrestations = new List<Prestation>();
             this.mesPrestations.Add(unePrestation);
         }
 
@@ -75,16 +71,9 @@ namespace Soins2020.classesMetier
         /// <param name="prenomPatient"> prenom du patient</param>
         /// <param name="dateNaissancePatient"> date de naissance du patient</param>
         /// <param name="lesPrestations"> une liste de prestation à insérer dans le client</param>
-        public Dossier(string nomPatient, string prenomPatient, DateTime dateNaissancePatient, List<Prestation> lesPrestations)
+        public Dossier(string nomPatient, string prenomPatient, DateTime dateNaissancePatient, List<Prestation> lesPrestations):this(nomPatient,prenomPatient,dateNaissancePatient)
         {
-            this.nomPatient = nomPatient;
-            this.prenomPatient = prenomPatient;
-            this.dateNaissancePatient = dateNaissancePatient;
-            this.mesPrestations = new List<Prestation>();
-            foreach (Prestation unePresta in lesPrestations)
-            {
-                this.mesPrestations.Add(unePresta);
-            }
+           this.mesPrestations = lesPrestations
 
         }
 
