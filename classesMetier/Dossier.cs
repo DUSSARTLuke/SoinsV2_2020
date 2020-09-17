@@ -73,7 +73,7 @@ namespace Soins2020.classesMetier
         /// <param name="lesPrestations"> une liste de prestation à insérer dans le client</param>
         public Dossier(string nomPatient, string prenomPatient, DateTime dateNaissancePatient, List<Prestation> lesPrestations):this(nomPatient,prenomPatient,dateNaissancePatient)
         {
-           this.mesPrestations = lesPrestations
+            this.mesPrestations = lesPrestations;
 
         }
 
